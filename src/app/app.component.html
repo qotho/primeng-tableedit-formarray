@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+
+<form [formGroup]="carForm">
+  <p-table [value]="tableRowArray.controls" [responsive]="true">
+  <ng-template pTemplate="caption">
+      List of Cars
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let col of columns">
+          <th>{{col}}</th>
+        </ng-container>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <ng-container formArrayName="tableRowArray">
+        <tr [formGroupName]="rowIndex">
+          <td style="text-align: center;">
+            <i class="pi pi-times" (click)="onDeleteRow(rowIndex)"></i>
+            <!--button pButton type="button" class="ui-button-secondary" icon="pi pi-times" iconPos="left" (click)="onDeleteRow(rowIndex)"></button-->
+          </td>
+          <td>
+            <div class="form-check" style="text-align: center;">
+              <p-checkbox binary="true" formControlName="isSold"></p-checkbox>
+              <label class="form-check-label"></label>
+            </div>
+          </td>
+          <td>
+            <input pInputText type="text" formControlName="brand" />
+            <div class="text-danger"
+              *ngIf="rowData.get('brand')?.errors && (rowData.get('brand')?.dirty || rowData.get('brand')?.touched)">
+              <small *ngIf="rowData.get('name').errors?.required">Brand is Required</small>
+            </div>
+          </td>
+          <td>
+            <input pInputText type="text" formControlName="color" />
+            <div class="text-danger"
+              *ngIf="rowData.get('color')?.errors && (rowData.get('color')?.dirty || rowData.get('color')?.touched)">
+              <small *ngIf="rowData.get('color').errors?.required">Color is Required</small>
+            </div>
+          </td>
+          <td>
+            <input pInputText type="text" formControlName="price" />
+            <div class="text-danger"
+              *ngIf="rowData.get('price')?.errors && (rowData.get('price')?.dirty || rowData.get('price')?.touched)">
+              <small *ngIf="rowData.get('price').errors?.required">Price is Required</small>
+              <small *ngIf="rowData.get('price').errors?.pattern">Number Only, max 6 digits with max 2
+                decimals</small>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-template>
+    <ng-template pTemplate="summary" let-rowData>
+      <div style="height: 2.1em;">
+        <button pButton type="button" class="ui-toolbar-group-left" (click)="addNewRow()" label="Add Row"></button>
+        <button pButton type="button" class="ui-toolbar-group-right" label="Save"></button>
+      </div>
+    </ng-template>    
+  </p-table>
+</form>

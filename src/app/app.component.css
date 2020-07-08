@@ -1,0 +1,12 @@
+:host ::ng-deep .ui-inputtext {
+    width: 100% !important;
+    border: 0px;
+}
+
+:host ::ng-deep .ui-table .ui-table-tbody > tr > td {
+    padding: 0 !important;
+}
+
+.text-danger {
+  color: red;
+}
