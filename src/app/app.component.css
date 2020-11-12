@@ -7,6 +7,10 @@
     padding: 0 !important;
 }
 
+:host ::ng-deep .ui-inputtext.ng-dirty.ng-invalid {
+  background-color: #f8b7bd !important;
+}
+
 .text-danger {
   color: red;
 }

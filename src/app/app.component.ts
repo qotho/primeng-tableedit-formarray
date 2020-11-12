@@ -5,7 +5,7 @@ import { Car } from './car';
 import { FilterUtils } from 'primeng/utils';
 import { LazyLoadEvent } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { EditableColumn } from 'primeng';
 
 
@@ -81,10 +81,7 @@ export class AppComponent {
             color: new FormControl(null, {  
                 validators: [Validators.required, Validators.maxLength(500)]  
             }),
-            isSold: new FormControl({  
-                value: true,  
-                disabled: true  
-            })  
+            isSold: new FormControl(null)  
         });  
     }
 
